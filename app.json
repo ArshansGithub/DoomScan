@@ -1,0 +1,43 @@
+{
+    "expo": {
+        "name": "DoomScan",
+        "slug": "doomscan",
+        "scheme": "doomscan",
+        "version": "1.0.0",
+        "platforms": [
+            "ios",
+            "android"
+        ],
+        "splash": {
+            "image": "./src/assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "orientation": "portrait",
+        "icon": "./src/assets/icon.png",
+        "userInterfaceStyle": "light",
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.arshan.doomscan"
+        },
+        "android": {
+            "package": "com.arshan.doomscan"
+        },
+        "plugins": [
+            [
+                "expo-image-picker",
+                {
+                    "photosPermission": "The app accesses your photos to let you share them with your friends."
+                }
+            ],
+            [
+                "react-native-vision-camera",
+                {
+                  "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera.",
+                  "enableMicrophonePermission": true,
+                  "microphonePermissionText": "$(PRODUCT_NAME) needs access to your Microphone."
+                }
+              ]
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+import VisionCamera
+
+@objc(Base64ConvertFramePlugin)
+public class Base64ConvertFramePlugin: FrameProcessorPlugin {
+  public override init(proxy: VisionCameraProxyHolder, options: [AnyHashable: Any]! = [:]) {
+    super.init(proxy: proxy, options: options)
+  }
+  
+  public override func callback(_ frame: Frame, withArguments arguments: [AnyHashable: Any]?) -> Any? {
+    let buffer = frame.buffer
+    let orientation = frame.orientation
+    
+    // Convert the buffer to a base64 image string
+    
+    let ciImage = CIImage(cvPixelBuffer: buffer)
+    
+    guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else {
+              print("Failed to create CGImage!")
+              return nil
+            }
+            let image = UIImage(cgImage: cgImage)
+            let imageData = image.jpegData(compressionQuality: 100)
+            return imageData?.base64EncodedString() ?? ""
+    
+  }
+}
